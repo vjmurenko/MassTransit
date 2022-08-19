@@ -5,10 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MassTransit" Version="6.2.3" />
+    <PackageReference Include="MassTransit.Analyzers" Version="6.2.3" />
+    <PackageReference Include="MassTransit.AspNetCore" Version="6.2.3" />
+    <PackageReference Include="NSwag.AspNetCore" Version="13.16.1" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Sample.Component\Sample.Component.csproj" />
     <ProjectReference Include="..\Sample.Contracts\Sample.Contracts.csproj" />
   </ItemGroup>
 
