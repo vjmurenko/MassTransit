@@ -34,7 +34,7 @@ namespace Sample.Api.Controllers
             if (accept.IsCompleted)
             {
                 var response = await accept;
-                return Ok(response.Message);
+                return Accepted(response.Message);
             }
             else
             {
