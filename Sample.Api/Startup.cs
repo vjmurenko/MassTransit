@@ -1,3 +1,4 @@
+using System;
 using MassTransit;
 using MassTransit.Definition;
 using Microsoft.AspNetCore.Builder;
@@ -23,7 +24,7 @@ namespace Sample.Api {
 			services.AddMassTransit(cfg =>
 			{
 				cfg.AddBus(provider => Bus.Factory.CreateUsingRabbitMq());
-				cfg.AddRequestClient<SubmitOrder>();
+				cfg.AddRequestClient<SubmitOrder>(new Uri($"exchange:{KebabCaseEndpointNameFormatter.Instance.Consumer<SubmitOrderConsumer>()}"));
 			});
 
 			services.AddMassTransitHostedService();

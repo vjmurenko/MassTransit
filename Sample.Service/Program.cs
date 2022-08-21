@@ -45,6 +45,8 @@ namespace Sample.Service
 					logging.AddConsole();
 				});
 
+			
+
 			if (isService)
 				await builder.UseWindowsService().Build().RunAsync();
 			else
