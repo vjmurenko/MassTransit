@@ -28,18 +28,25 @@ namespace Sample.Component.Consumers
 						Reason = "Rejected"
 					});
 				}
+				return;
 			}
-			else
+
+			await context.Publish<OrderSubmited>(new
+            {
+
+                context.Message.OrderId,
+                context.Message.Timestamp,
+                context.Message.CustomerNumber
+            });
+
+			if (context.RequestId != null)
 			{
-				if (context.RequestId != null)
+				await context.RespondAsync<OrderSubmissionAccepted>(new
 				{
-					await context.RespondAsync<OrderSubmissionAccepted>(new
-					{
-						context.Message.OrderId,
-						InVar.Timestamp,
-						CustomerNumber = "Hello from consumer"
-					});
-				}
+					context.Message.OrderId,
+					InVar.Timestamp,
+					CustomerNumber = "Hello from consumer"
+				});
 			}
 		}
 	}
